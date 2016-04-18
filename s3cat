@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+filepath="/tmp/${RANDOM}"
+
+aws s3 cp "$1" "$filepath" > /dev/null
+
+cat "$filepath"
+
+rm "$filepath"

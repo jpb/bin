@@ -1,0 +1,14 @@
+#!/bin/bash
+
+filepath="/tmp/${RANDOM}"
+touch "${filepath}.time"
+
+aws s3 cp "$1" "$filepath"
+
+$EDITOR $filepath
+
+if [ $filepath -nt "${filepath}.time" ]; then
+  aws s3 cp $filepath "$1"
+fi
+
+rm "$filepath" "${filepath}.time"

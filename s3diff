@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+first="/tmp/${RANDOM}"
+second="/tmp/${RANDOM}"
+
+aws s3 cp "$1" "$first"
+aws s3 cp "$2" "$second"
+
+diff "$first" "$second"
+
+rm "$first" "$second"
